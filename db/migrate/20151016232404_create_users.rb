@@ -1,7 +1,7 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
-      # all these values are set from the omniauth creds
+  # all these values are set from the omniauth creds
       
       # should be unique or set as primary key - see this link: http://ruby-journal.com/how-to-override-default-primary-key-id-in-rails/ but unclear whether this is up to date
       t.string :spotify_id
@@ -15,7 +15,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :image
 
 
-      t.timestamps
+
+      t.timestamps null: false
     end
   end
 end
