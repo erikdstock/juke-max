@@ -1,0 +1,3 @@
+<%= current_user ? ("Welcome #{current_user.display_name}") : (link_to 'Sign in with Spotify', '/auth/spotify') %>
+
+<!-- hacky- prob redo with global authenticate/redirect in controllers -->
