@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/erikdstock/juke-pro.svg?branch=master)](https://travis-ci.org/erikdstock/juke-pro)
 [![Code Climate](https://codeclimate.com/github/erikdstock/juke-pro/badges/gpa.svg)](https://codeclimate.com/github/erikdstock/juke-pro)
 [![Test Coverage](https://codeclimate.com/github/erikdstock/juke-pro/badges/coverage.svg)](https://codeclimate.com/github/erikdstock/juke-pro/coverage)
 # Juke Pro
