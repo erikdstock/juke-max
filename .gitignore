@@ -36,3 +36,5 @@ bower.json
 
 # Ignore Figaro secrets
 application.yml
+# Ignore application configuration
+/config/application.yml
