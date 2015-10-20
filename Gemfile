@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+# ruby ~> 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
@@ -26,6 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # App-specific stuff
 gem 'rspotify'
 gem "figaro"
+
+gem "codeclimate-test-reporter", group: :test
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

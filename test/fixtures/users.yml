@@ -4,7 +4,12 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+basic: 
+  spotify_id: test_id
+  display_name: Grace Tester
+  email:  test@test.com
+  profile_url: http://open.spotify.com/test
+  image: http://open.spotify.com/test/picture.jpg
 # column: value
 #
 two: {}

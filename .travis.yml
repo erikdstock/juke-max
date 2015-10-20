@@ -1,0 +1,11 @@
+language: ruby
+rvm:
+ - "2.0.0"
+ # - "2.1"
+before_script:
+ - psql -c 'create database travis_ci_test;' -U postgres
+ - cp config/database.yml.travis config/database.yml
+addons:
+    code_climate:
+        repo_token: 088cd71ea726d70abbc40e85b016378586008e89fb77ac3f4fca8f8b1998c745
+ # - "1.9.2"
