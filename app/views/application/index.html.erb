@@ -1,3 +1,6 @@
-<%= current_user ? ("Welcome #{current_user.display_name}") : (link_to 'Sign in with Spotify', '/auth/spotify') %>
-
-<!-- hacky- prob redo with global authenticate/redirect in controllers -->
+<% if current_user %>
+Welcome <%= current_user.spotify_id %>!
+<%= link_to 'Sign out', '/sign_out' %>
+<% else %>
+<%= link_to 'Sign in with Spotify', '/auth/spotify' %>
+<% end %>
