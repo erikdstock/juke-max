@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :playlists
+  
   def self.from_omniauth(spotify_params)
     spotify_user = RSpotify::User.new(spotify_params)
     where(spotify_id: spotify_user.id).first_or_create do |user|
