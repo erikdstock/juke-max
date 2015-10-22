@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     spotify_params = request.env['omniauth.auth']
     user = User.from_omniauth(spotify_params)
     session[:user_id] = user.id if user
-    redirect_to :root
+    redirect_to playlists_path
   end
 
   def destroy
