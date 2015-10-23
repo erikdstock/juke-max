@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
     self.spotify_hash = spotify_user.to_hash
     save
   end
+
+  def spotify
+    RSpotify::User.new(spotify_hash)
+  end
 end
