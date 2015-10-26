@@ -27,6 +27,3 @@ module JukePro
 
   end
 end
-
-
-RSpotify::authenticate(ENV["spotify_client_id"], ENV["spotify_secret"])
