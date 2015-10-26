@@ -4,6 +4,6 @@ class Playlist < ActiveRecord::Base
   before_create :spotify_create
 
   def spotify_create
-    self.user.spotify.create_playlist!(name)
+    user.spotify_user.create_playlist!(name)
   end
 end
