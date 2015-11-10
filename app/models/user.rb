@@ -10,26 +10,31 @@ class User < ActiveRecord::Base
 
   def refresh_fields(params)
     spotify_user = RSpotify::User.new(params)
-    self.image = spotify_user.images[0].url if spotify_user.images[0]
+    self.image = spotify_user.images[0].url if spotify_user.images
     self.email = spotify_user.email
-    self.profile_url = spotify_user.external_urls.spotify
+    self.profile_url = spotify_user.external_urls.spotify if spotify_user.external_urls
     self.display_name = spotify_user.display_name
 
-    # unsure of best way to use this...
+    # unsure of best way to use this... would probably be better to store the user's actual token/creds
     self.spotify_hash = spotify_user.to_hash
     save
   end
 
   # find seems to poll spotify every time, returns full creds. possibly could use only the necessary values from the spotify hash to similar effect, but can't use string hash from db
-  def spotify_user
-    @_spotify_user ||= RSpotify::User.find(spotify_id)
+  def rspotify_user
+    @_rspotify_user ||= RSpotify::User.find(spotify_id)
   end
 
-  # don't know if we'll ever need this or if it will work but it's cute. would be a good candidate for unit testing if we do need it
-  # edit - this doesn't work
-  # def spotify_hash
-  #   json_ready_string = read_attribute(:spotify_hash).gsub('=>', ':').gsub('nil', 'null')
-  #   JSON.parse(json_ready_string)
+
+  ## created this as a way to filter jukepro-branded playlists but then decided it is too hacky.
+  # def juke_pro_playlists
+  #   things = rspotify_user.playlists
+  #   # byebug
+  #   things.select do |playlist|
+  #     playlist.name.match /^__JP__/
+  #   end
   # end
+
+ 
 
 end
