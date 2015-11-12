@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
 
   def refresh_fields(params)
     spotify_user = RSpotify::User.new(params)
-    byebug
     self.image = spotify_user.images[0].url if spotify_user.images[0]
     self.email = spotify_user.email
     self.profile_url = spotify_user.external_urls.spotify if spotify_user.external_urls
