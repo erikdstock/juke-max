@@ -20,7 +20,6 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user!
-  	puts "Authenticating..."
   	redirect_to :root unless current_user
   end
 

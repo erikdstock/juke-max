@@ -16,18 +16,18 @@
     <ul class="right hide-on-med-and-down">
       <% if current_user %>
         <li><%= link_to current_user.display_name, user_path(current_user) %></li>
-        <li><%= link_to 'Sign out', sign_out_path %></li>
+        <li><%= link_to 'Sign Out', sign_out_path %></li>
       <% else %>
-        <li><%= link_to 'Sign in', '/auth/spotify' %></li>
+        <li><%= link_to 'Sign In', '/auth/spotify', id: "top-nav-login" %></li>
       <% end %>
     </ul>
 
     <ul id="nav-mobile" class="side-nav">
       <% if current_user %>
         <li><%= link_to current_user.display_name, user_path(current_user) %></li>
-        <li><%= link_to 'Sign out', sign_out_path %></li>
+        <li><%= link_to 'Sign Out', sign_out_path %></li>
       <% else %>
-        <li><%= link_to 'Sign in', '/auth/spotify' %></li>
+        <li><%= link_to 'Sign In', '/auth/spotify', id: "side-nav-login" %></li>
       <% end %>
     </ul>
     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>

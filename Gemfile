@@ -43,6 +43,7 @@ gem "minitest-rails"
 
 group :test do
   gem "minitest-rails-capybara"
+  gem "launchy"
 end
 
 group :development, :test do

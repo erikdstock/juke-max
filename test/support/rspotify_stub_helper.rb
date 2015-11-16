@@ -34,8 +34,6 @@ module RSpotifyStubHelper
   end
 
 
-  private
-
   def mock_oauth(user)
     OmniAuth.config.add_mock :spotify, RSpotifyStubHelper::USER_PARAMS[user]
   end
