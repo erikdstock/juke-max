@@ -1,6 +1,9 @@
 class Playlist < ActiveRecord::Base
   belongs_to :user
+  
   validates :name, presence: true
+  validates :link_name, uniqueness: true, format: /\A[\w\d\s]{0,24}\z/
+  
   before_create :spotify_create
 
   def spotify_create
@@ -21,7 +24,7 @@ class Playlist < ActiveRecord::Base
     save
   end
 
-  
+
   private
 
   ### Not really needed. was used in place of name for #spotify_create above. seems unneccessary for now but did make me realize we are duplicating a lot of rspotify's work.

@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user
 
+
   def index
   	redirect_to playlists_path if current_user
   end
