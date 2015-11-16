@@ -1,11 +1,29 @@
 class Playlist < ActiveRecord::Base
   belongs_to :user
+  
   validates :name, presence: true
+  validates :link_name, uniqueness: true, format: /\A[\w\d\s]{0,24}\z/
+  
   before_create :spotify_create
 
   def spotify_create
     user.rspotify_user.create_playlist!(name)
   end
+
+
+  def activate!
+    update_attributes(active: true)
+  end
+
+  def deactivate!
+    update_attributes(active: false)
+  end
+
+  def toggle_active!
+    self.active = !active
+    save
+  end
+
 
   private
 

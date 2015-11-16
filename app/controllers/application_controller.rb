@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user
 
+
   def index
   	redirect_to playlists_path if current_user
   end
@@ -19,7 +20,6 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user!
-  	puts "Authenticating..."
   	redirect_to :root unless current_user
   end
 

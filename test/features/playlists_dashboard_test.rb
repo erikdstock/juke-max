@@ -1,20 +1,39 @@
 require "test_helper"
-require_relative "../support/integration_spec_helper"
-require_relative "../support/features_helper"
+require_relative "../support/rspotify_stub_helper"
+# require_relative "../support/features_helper"
 
-include IntegrationSpecHelper
+include RSpotifyStubHelper
 
-class LoginDashboardTest < Capybara::Rails::TestCase
-  test "sanity" do
+
+feature "Logging in" do
+
+  scenario "visiting the home page" do
     visit root_path
-    assert_content page, "Juke Pro"
-    # refute_content page, "Goobye All!"
+    page.must_have_content "Juke Pro"
   end
 
-  test "visit dashboard after login" do 
-    RSpotify::User.stub :find, DUMMY_USER do
-        login_with_oauth
-        assert page.has_content?("Playlists")
+  scenario "logging in via the login button" do
+    # skip
+    visit root_path
+    # save_and_open_page
+    mock_oauth(:grace)
+
+    RSpotify::User.stub :find, RSpotify::User.new(USER_PARAMS[:grace]) do
+      page.find("#top-nav-login").click
     end
+    page.must_have_content("Grace Hopper")
   end
+
+  scenario "User sees their dashboard after login" do
+    login_with_oauth(:grace)
+    page.must_have_content("Grace Hopper")
+  end
+
+  scenario "User sees a list of their playlists" do
+    login_with_oauth(:grace)
+    page.must_have_content("Playlists")
+    # save_and_open_page
+    page.all(".playlist").length.must_equal(1)
+  end
+
 end

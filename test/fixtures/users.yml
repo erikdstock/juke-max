@@ -4,13 +4,15 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-basic: 
-  spotify_id: test_id
-  display_name: Grace Tester
+
+# User for feature tests is stubbed by RSpotify's Oauth Mock. This user should mostly align with it and work with playlists fixture association
+grace: 
+  spotify_id: disc-grace
+  display_name: Grace Hopper
   email:  test@test.com
   profile_url: http://open.spotify.com/test
-  image: http://open.spotify.com/test/picture.jpg
-# column: value
-#
-two: {}
+  image: "https://scontent.xx.fbcdn.net/hprofile-xtp1/v/t1.0-1/p200x200/12109254_10153317472678737_2420135860526267916_n.jpg?oh=203c987de73a00ee3239cf4c1a377261&oe=56B0D160"
+# # column: value
+# #
+# two: {}
 #  column: value
