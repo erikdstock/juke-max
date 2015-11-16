@@ -1,20 +1,26 @@
 <div class="row">
   <div class="col s12">
     <h4>Playlists</h4>
-  	<% if @playlists.any? %>
-      <div class="collection">
-				<% @playlists.each do |playlist| %>
-					<%= link_to playlist, class: "collection-item playlist" do %>
-						<%= playlist.name %> <span class="badge"><%= Time.at(playlist.created_at).to_date %></span>
-					<% end %>
-					</li>
-				<% end %>
-			</div>
-		<% else %>
-			<p>It doesn't look like you have any playlists yet!</p>
-		<% end %>
+    <% if @playlists.any? %>
+      <ul class="collection">
+        <% @playlists.each do |playlist| %>
+          <li>
+          <%= link_to playlist, class: "collection-item playlist" do %>
+            <%= playlist.name %>
+            <span class="badge">
+              <%= Time.at(playlist.created_at).to_date %>
+              <input type="checkbox" id="test5" />
+              <label for="test5">Party Time</label>
+            </span>
+          <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>It doesn't look like you have any JukePro playlists yet!</p>
+    <% end %>
   <%= link_to new_playlist_path, class: "waves-effect waves-light btn" do %>
-  	<i class="material-icons right">playlist_add</i> New playlist
+    <i class="material-icons right">playlist_add</i> New playlist
   <% end %>
   </div>
 </div>
