@@ -6,14 +6,13 @@ feature "Throwing a party" do
   end
 
   scenario "User creates a new playlist from the dashboard" do
+    skip "Probably need to stub RSpotify create playlists to actually run this test"
     click_link "New playlist"
     fill_in "playlist_name", with: "Hangin With Misses Hopper"
-    skip "Probably need to stub RSpotify create playlists to actually run this test"
-
     save_and_open_page
   end
 
-  scenario "navigate to playlist show page from the dashboard and activate- this test is all jacked up. i think it needs selenium (js: true) to find the materialize.css checkbox", do
+  scenario "navigate to playlist show page from the dashboard and activate- this test is all jacked up. i think it needs selenium (js: true) to find the materialize.css checkbox" do
     skip
     click_link "The Jams"
     page.must_have_content "The Jams"
