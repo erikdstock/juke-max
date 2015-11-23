@@ -21,8 +21,9 @@ ActiveRecord::Schema.define(version: 20151023012519) do
     t.integer  "playlist_id"
     t.string   "name"
     t.string   "link_name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.text     "spotify_hash"
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,7 +34,7 @@ ActiveRecord::Schema.define(version: 20151023012519) do
     t.string   "image"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.string   "spotify_hash"
+    t.text     "spotify_hash"
   end
 
 end

@@ -16,12 +16,16 @@ class User < ActiveRecord::Base
     self.display_name = spotify_user.display_name
 
     # unsure of best way to use this... would probably be better to store the user's actual token/creds
-    self.spotify_hash = spotify_user.to_hash
+    self.spotify_hash = spotify_user.to_json
     save
   end
 
+  def get_hash
+    JSON.parse(spotify_hash)
+  end
+
   # find seems to poll spotify every time, returns full creds. possibly could use only the necessary values from the spotify hash to similar effect, but can't use string hash from db
-  def rspotify_user
+  def rspotify
     @_rspotify_user ||= RSpotify::User.find(spotify_id)
   end
 
