@@ -36,6 +36,23 @@ class PlaylistsController < ApplicationController
     redirect_to root_path
   end
 
+# This should technically be a POST
+  def activate
+    @playlist = Playlist.find_by(id: params[:id])
+    if @playlist.link_name.nil?
+      flash[:message] = "Your party needs a name before you can activate this playlist"
+      redirect_to edit_playlist_path and return
+    end
+    @playlist.update(active: true)
+    redirect_to @playlist
+  end
+
+  def deactivate
+    @playlist = Playlist.find_by(id: params[:id])
+    @playlist.update(active: false)
+    redirect_to @playlist
+  end
+
   private
 
   def playlist_params
