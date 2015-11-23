@@ -20,8 +20,8 @@ class User < ActiveRecord::Base
     save
   end
 
-  def get_hash
-    JSON.parse(spotify_hash)
+  def spotify_hash
+    self[:spotify_hash] ? JSON.parse(self[:spotify_hash]) : nil
   end
 
   # find seems to poll spotify every time, returns full creds. possibly could use only the necessary values from the spotify hash to similar effect, but can't use string hash from db

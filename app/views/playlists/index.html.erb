@@ -7,10 +7,14 @@
           <li>
           <%= link_to playlist, class: "collection-item playlist" do %>
             <%= playlist.name %>
+            <%= Time.at(playlist.created_at).to_date %>
             <span class="badge">
-              <%= Time.at(playlist.created_at).to_date %>
-              <input type="checkbox" id="test5" />
-              <label for="test5">Party Time</label>
+              <% if playlist.active? %>
+                <i class="material-icons">volume_up</i>
+              <% else %>
+                <i class="material-icons">volume_off</i>
+              <% end %>
+
             </span>
           <% end %>
           </li>

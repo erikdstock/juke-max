@@ -2,18 +2,23 @@ class Playlist < ActiveRecord::Base
   belongs_to :user
   
   validates :name, presence: true
-  # validates :link_name, uniqueness: true, format: /\A[\w\d\s]{0,24}\z/
+  validates :link_name, uniqueness: true,
+                        format: /\A[\w\d\s]{0,24}\z/,
+                        allow_nil: true
   
   before_create :spotify_create
 
   def spotify_create
-    byebug
     params = user.rspotify.create_playlist!(name)
     self.spotify_hash = params.to_json
   end
 
-  def get_hash
-    JSON.parse(spotify_hash)
+  def spotify_hash
+    self[:spotify_hash] ? JSON.parse(self[:spotify_hash]) : nil
+  end
+
+  def active?
+    active
   end
 
   def activate!
