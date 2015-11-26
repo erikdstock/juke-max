@@ -8,7 +8,7 @@ feature "Throwing a party" do
   scenario "User creates a new playlist from the dashboard" do
     skip "Probably need to stub RSpotify create playlists to actually run this test"
     click_link "New playlist"
-    fill_in "playlist_name", with: "Hangin With Misses Hopper"
+    fill_in "name", with: "Hangin With Misses Hopper"
     save_and_open_page
   end
 

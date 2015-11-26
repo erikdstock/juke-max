@@ -11,6 +11,7 @@ class Playlist < ActiveRecord::Base
   def spotify_create
     params = user.rspotify.create_playlist!(name)
     self.spotify_hash = params.to_json
+    self.spotify_id = params.id
   end
 
   def spotify_hash
@@ -35,7 +36,7 @@ class Playlist < ActiveRecord::Base
   end
 
   def rspotify
-    @_rspotify_playlist ||= RSpotify::Playlist.find(user.spotify_id, name)
+    @_rspotify_playlist ||= RSpotify::Playlist.find(user.spotify_id, self.spotify_id)
   end
 
 
