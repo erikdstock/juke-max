@@ -13,7 +13,7 @@ class PlaylistsController < ApplicationController
   def create
     playlist = Playlist.new(playlist_params)
     playlist.update(user: current_user)
-    ap playlist.rspotify
+    # ap playlist.rspotify
     redirect_to playlist
   end
 

@@ -24,6 +24,49 @@ module RSpotifyStubHelper
       }
     }
 
+    PLAYLIST_PARAMS = {
+      "collaborative"=>false,
+      "description"=>nil,
+      "followers"=>{
+          "href"=>nil, 
+          "total"=>0
+        },
+      "images"=>[],
+      "name"=>"froo",
+      "public"=>true,
+      "snapshot_id"=>"2BfKsGBoCiEZiV96mQcDGXVQ4NuU8tvybnDbDhX5wQAeHS0ZmtyYk1K6jV1EW1rY", 
+      "total"=>0, 
+      "owner"=>{
+        "birthdate"=>nil,
+        "country"=>nil,
+        "display_name"=>nil,
+        "email"=>nil,
+        "followers"=>nil,
+        "images"=>nil,
+        "product"=>nil, 
+        "external_urls"=>{"spotify"=>"http://open.spotify.com/user/discgrace"},
+        "href"=>"https://api.spotify.com/v1/users/discgrace",
+        "id"=>"discgrace", 
+        "type"=>"user",
+        "uri"=>"spotify:user:discgrace"
+      },
+      "tracks" => {
+        "total" => 0
+      },
+      "tracks_cache"=>[],
+      "tracks_added_at"=>{},
+      "tracks_added_by"=>{},
+      "tracks_is_local"=>{},
+      "external_urls"=>{
+        "spotify"=>"http://open.spotify.com/user/discgrace/playlist/2Vsiq5g9YRAX9lK6P1ejOE"
+        }, 
+      "href"=>"https://api.spotify.com/v1/users/discgrace/playlists/2Vsiq5g9YRAX9lK6P1ejOE",
+      "id"=>"2Vsiq5g9YRAX9lK6P1ejOE",
+      "type"=>"playlist",
+      "uri"=>"spotify:user:discgrace:playlist:2Vsiq5g9YRAX9lK6P1ejOE",
+      "path"=>"users/discgrace/playlists/2Vsiq5g9YRAX9lK6P1ejOE"
+    }
+
   # we need to mock both oauth and rspotify#find for login
   def login_with_oauth(user = :grace)
     mock_oauth(user)

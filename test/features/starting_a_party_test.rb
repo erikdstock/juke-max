@@ -1,4 +1,7 @@
 require 'test_helper'
+require_relative "../support/rspotify_stub_helper"
+
+include RSpotifyStubHelper
 
 feature "Throwing a party" do
   before do
@@ -6,10 +9,13 @@ feature "Throwing a party" do
   end
 
   scenario "User creates a new playlist from the dashboard" do
-    skip "Probably need to stub RSpotify create playlists to actually run this test"
     click_link "New playlist"
-    fill_in "name", with: "Hangin With Misses Hopper"
+    fill_in "name", with: "Space Jams"
+    RSpotify::Playlist.stub :find, RSpotify::Playlist.new(PLAYLIST_PARAMS) do
+      click_on "Submit"
+    end
     save_and_open_page
+    page.must_have_content("Space Jams")  
   end
 
   scenario "navigate to playlist show page from the dashboard and activate- this test is all jacked up. i think it needs selenium (js: true) to find the materialize.css checkbox" do
