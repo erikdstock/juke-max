@@ -7,7 +7,7 @@
 
 # User for feature tests is stubbed by RSpotify's Oauth Mock. This user should mostly align with it and work with playlists fixture association
 grace: 
-  spotify_id: disc-grace
+  spotify_id: discgrace
   display_name: Grace Hopper
   email:  test@test.com
   profile_url: http://open.spotify.com/test

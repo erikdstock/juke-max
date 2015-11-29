@@ -31,7 +31,7 @@ feature "Logging in" do
     login_with_oauth(:grace)
     page.must_have_content("Playlists")
     # save_and_open_page
-    page.all(".playlist").length.must_equal(1)
+    page.all(".playlist").length.must_equal(users(:grace).playlists.length)
   end
 
 end

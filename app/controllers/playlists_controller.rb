@@ -41,7 +41,7 @@ class PlaylistsController < ApplicationController
   def activate
     @playlist = Playlist.find_by(id: params[:id])
     if @playlist.link_name.nil?
-      flash[:notice] = "Your party needs a name before you can activate this playlist"
+      flash[:notice] = "You need to name your party before you can activate this playlist"
       redirect_to edit_playlist_path and return
     end
     @playlist.update(active: true)
