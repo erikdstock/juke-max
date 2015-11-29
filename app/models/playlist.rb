@@ -14,6 +14,12 @@ class Playlist < ActiveRecord::Base
     self.spotify_id = params.id
   end
 
+  def link_name
+    link_name = self[:link_name]
+    return nil unless link_name
+    link_name.downcase.gsub(/[\s]/,"-")
+  end
+
   def spotify_hash
     self[:spotify_hash] ? JSON.parse(self[:spotify_hash]) : nil
   end
