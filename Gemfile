@@ -43,6 +43,7 @@ gem "minitest-rails"
 
 group :test do
   gem "minitest-rails-capybara"
+  gem "minitest-stub_any_instance"
   gem "launchy"
   gem 'selenium-webdriver'
 end

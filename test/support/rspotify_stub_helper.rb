@@ -32,7 +32,7 @@ module RSpotifyStubHelper
           "total"=>0
         },
       "images"=>[],
-      "name"=>"froo",
+      "name"=>"Space Jams",
       "public"=>true,
       "snapshot_id"=>"2BfKsGBoCiEZiV96mQcDGXVQ4NuU8tvybnDbDhX5wQAeHS0ZmtyYk1K6jV1EW1rY", 
       "total"=>0, 
@@ -73,6 +73,14 @@ module RSpotifyStubHelper
 
     RSpotify::User.stub :find, RSpotify::User.new(USER_PARAMS[user]) do
       visit "/auth/spotify"
+    end
+  end
+
+  def stub_playlist
+    RSpotify::User.stub_any_instance :create_playlist!, RSpotify::Playlist.new(PLAYLIST_PARAMS) do
+      RSpotify::User.stub :find, RSpotify::User.new(USER_PARAMS[:grace]) do
+        yield
+      end
     end
   end
 

@@ -1,0 +1,14 @@
+<% if @errors %>
+  <div data-alert class='alert-box alert radius' >
+    <% @errors.each do |error| %>
+      <%= error %>
+    <% end %>
+    <a href="#" class="close">&times;</a>
+  </div>
+<% end %>
+<% if flash[:notice] %>
+    <div class="notice"><%=flash[:notice]%></div>
+<% end %>
+<% if flash[:alert] %>
+    <div class="alert"><%=flash[:alert]%></div>
+<% end %>

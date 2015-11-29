@@ -9,13 +9,17 @@ feature "Throwing a party" do
   end
 
   scenario "User creates a new playlist from the dashboard" do
+    name = PLAYLIST_PARAMS['name']
+
     click_link "New playlist"
-    fill_in "name", with: "Space Jams"
-    RSpotify::Playlist.stub :find, RSpotify::Playlist.new(PLAYLIST_PARAMS) do
+    fill_in "Name", with: name
+
+    stub_playlist  do
       click_on "Submit"
     end
+
     save_and_open_page
-    page.must_have_content("Space Jams")  
+    page.must_have_content(name)  
   end
 
   scenario "navigate to playlist show page from the dashboard and activate- this test is all jacked up. i think it needs selenium (js: true) to find the materialize.css checkbox" do
