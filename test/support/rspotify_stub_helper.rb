@@ -67,6 +67,9 @@ module RSpotifyStubHelper
       "path"=>"users/discgrace/playlists/2Vsiq5g9YRAX9lK6P1ejOE"
     }
 
+    PLAYLIST_SPOTIFY_HASH = PLAYLIST_PARAMS.as_json
+    USER_SPOTIFY_HASH = USER_PARAMS.as_json
+
   # we need to mock both oauth and rspotify#find for login
   def login_with_oauth(user = :grace)
     mock_oauth(user)

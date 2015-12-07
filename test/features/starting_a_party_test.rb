@@ -27,9 +27,10 @@ feature "Throwing a party" do
     page.must_have_content("Party Link: at/#{playlists(:basic).link_name}")
   end
 
-  scenario "User tries to activate a playlist with no link_name" do
+  scenario "User tries to activate a playlist with no link_name - they are redirected to #show page" do
     click_link "Nameless Jams"
     click_on "Activate"
+    page.must_have_content("#{playlists(:nameless).name} - Edit")
     page.must_have_content("You need to name your party before you can activate this playlist")
   end
 
