@@ -40,6 +40,7 @@ gem "codeclimate-test-reporter", group: :test
 # gem 'capistrano-rails', group: :development
 
 gem "minitest-rails"
+gem "minitest-reporters"
 
 group :test do
   gem "minitest-rails-capybara"
