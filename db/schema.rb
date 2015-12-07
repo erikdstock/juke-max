@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20151023012519) do
 
   create_table "playlists", force: :cascade do |t|
     t.integer  "user_id"
+    t.string   "spotify_id"
     t.boolean  "active",       default: false
     t.string   "name"
     t.string   "link_name"

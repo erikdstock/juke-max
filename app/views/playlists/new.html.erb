@@ -1,21 +1,7 @@
 <div class="row">
 	<div class="col s12">
 		<h4>New playlist</h4>
-		<%= form_for @playlist, class: "col s12" do |f| %>
-			<div class="row">
-				<div class="input-field col s12 m6">
-					<%= f.text_field :name %>
-					<%= f.label :name %>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s12 m6">
-					<%= button_tag(type: 'submit', class: "btn waves-effect waves-light") do %>
-						<i class="material-icons right">send</i> Submit
-					<% end %>
-				</div>
-			</div>
-		<% end %>
+		<%= render "form" %>
 		<%= link_to playlists_path, class: "waves-effect waves-light btn light-blue darken-2" do %>
 			<i class="material-icons right">list</i> Return to playlist index
 		<% end %>

@@ -13,9 +13,7 @@ feature "Logging in" do
   end
 
   scenario "logging in via the login button" do
-    # skip
     visit root_path
-    # save_and_open_page
     mock_oauth(:grace)
 
     RSpotify::User.stub :find, RSpotify::User.new(USER_PARAMS[:grace]) do
@@ -33,7 +31,7 @@ feature "Logging in" do
     login_with_oauth(:grace)
     page.must_have_content("Playlists")
     # save_and_open_page
-    page.all(".playlist").length.must_equal(1)
+    page.all(".playlist").length.must_equal(users(:grace).playlists.length)
   end
 
 end

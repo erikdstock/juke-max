@@ -44,6 +44,7 @@ gem "minitest-reporters"
 
 group :test do
   gem "minitest-rails-capybara"
+  gem "minitest-stub_any_instance"
   gem "launchy"
   gem 'selenium-webdriver'
 end
@@ -52,6 +53,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'pry-byebug'
+  gem 'awesome_print'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
