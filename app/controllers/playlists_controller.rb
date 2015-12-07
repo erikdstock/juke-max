@@ -13,6 +13,7 @@ class PlaylistsController < ApplicationController
   def create
     playlist = Playlist.new(playlist_params)
     playlist.update(user: current_user)
+    # ap playlist.rspotify
     redirect_to playlist
   end
 
@@ -40,7 +41,7 @@ class PlaylistsController < ApplicationController
   def activate
     @playlist = Playlist.find_by(id: params[:id])
     if @playlist.link_name.nil?
-      flash[:message] = "Your party needs a name before you can activate this playlist"
+      flash[:notice] = "You need to name your party before you can activate this playlist"
       redirect_to edit_playlist_path and return
     end
     @playlist.update(active: true)

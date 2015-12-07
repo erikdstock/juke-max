@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col s12">
+    <div class="card teal lighten-1">
+      <div class="card-content white-text">
+        <span class="card-title"><%= @playlist.name %> - Edit</span>
+          <% if @playlist.active? %>
+            <i class="material-icons">volume_up</i>
+          <% else %>
+            <i class="material-icons">volume_off</i>
+          <% end %>
+        <div class="attributes">
+          <%= render 'form' %>
+        </div>
+        <div class="collection">
+					<!-- Songs here -->
+				</div>
+      </div>
+      <div class="card-action">
+        <!-- Links to add songs, etc. -->
+      </div>
+    </div>
+    <%= link_to playlists_path, class: "waves-effect waves-light btn light-blue darken-2" do %>
+    	<i class="material-icons right">list</i> Return to playlist index
+    <% end %>
+
+    <% if @playlist.active? %>
+      <%= link_to deactivate_playlist_path, class: "waves-effect waves-light btn light-blue darken-2" do %> 
+        Deactivate 
+        <i class="material-icons">volume_off</i>
+      <% end %>
+    <% else %>
+      <%= link_to activate_playlist_path, class: "waves-effect waves-light btn light-blue darken-2" do %> 
+          Activate 
+        <i class="material-icons">volume_up</i>
+      <% end %>
+    <% end %>
+  </div>
+</div>
