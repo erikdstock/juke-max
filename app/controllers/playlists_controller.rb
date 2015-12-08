@@ -57,7 +57,7 @@ class PlaylistsController < ApplicationController
   private
 
   def playlist_params
-    params.require(:playlist).permit(:name)
+    params.require(:playlist).permit(:name, :link_name)
   end
 
   ### Do we need this ??? a lot of extra controller logic to account for duplicated playlist logic. maybe it should go somewere else?
