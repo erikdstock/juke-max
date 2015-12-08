@@ -18,15 +18,11 @@ class PlaylistTest < ActiveSupport::TestCase
   end
 
   test "#spotify_hash returns a hash if valid JSON string is stored in object" do 
-    test_list = playlists(:basic)
-    assert_equal test_list.spotify_hash.class, Hash
+    # RSpotify::Playlist.stub :find, RSpotify::Playlist.new(PLAYLIST_PARAMS) do
+      test_list = playlists(:basic)
+      assert_equal test_list.spotify_hash.class, Hash
+    # end
   end
-
-  # test "#link_name returns nil if there is no link_name" do 
-  #   skip
-  #   test_list = playlists(:nameless)
-  #   assert_nil test_list.link_name
-  # end
 
 
 end

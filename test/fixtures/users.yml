@@ -12,7 +12,7 @@ grace:
   display_name: Grace Hopper
   email:  test@test.com
   profile_url: http://open.spotify.com/test
-  spotify_hash: <%=RSpotifyStubHelper::USER_SPOTIFY_HASH.to_json %>
+  spotify_hash: <%=RSpotifyStubHelper::USER_YAML %>
   image: "https://scontent.xx.fbcdn.net/hprofile-xtp1/v/t1.0-1/p200x200/12109254_10153317472678737_2420135860526267916_n.jpg?oh=203c987de73a00ee3239cf4c1a377261&oe=56B0D160"
 # # column: value
 # #
