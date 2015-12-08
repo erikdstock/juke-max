@@ -22,10 +22,10 @@ feature "Throwing a party" do
   end
 
   scenario "navigate to playlist show page from the dashboard and activate" do
-    skip
+    # skip
     click_link "The Jams"
     click_on "Activate"
-    page.must_have_content("Party Link: at/#{playlists(:basic).link_name}")
+    page.must_have_content("Party Link: at/#{playlists(:basic).party_path}")
   end
 
   scenario "User tries to activate a playlist with no link_name - they are redirected to #show page" do

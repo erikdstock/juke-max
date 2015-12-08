@@ -9,14 +9,14 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "#spotify_hash returns a hash if valid JSON string is stored in object" do 
-    test_list = playlists(:basic)
-    refute_equal test_list.link_name, test_list[:link_name]
+    test_user = users(:grace)
+    assert_equal test_user.spotify_hash.class, Hash
   end
 
-  test "#spotify_hash returns nil if there is no link_name" do 
-    test_list = playlists(:nameless)
-    assert_nil test_list.link_name
-  end
+  # test "#spotify_hash returns nil if there is no link_name" do 
+  #   test_list = playlists(:nameless)
+  #   assert_nil test_list.link_name
+  # end
 
 
 end

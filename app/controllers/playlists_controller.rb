@@ -27,8 +27,12 @@ class PlaylistsController < ApplicationController
 
   def update
     playlist = Playlist.find_by(id: params[:id])
-    playlist.update(playlist_params)
-    redirect_to playlist
+    if playlist.update(playlist_params)
+      redirect_to playlist
+    else
+      flash[:alert] = playlist.errors.full_messages
+    redirect_to edit_playlist_path(playlist)
+    end
   end
 
   def destroy
@@ -57,7 +61,7 @@ class PlaylistsController < ApplicationController
   private
 
   def playlist_params
-    params.require(:playlist).permit(:name)
+    params.require(:playlist).permit(:name, :link_name)
   end
 
   ### Do we need this ??? a lot of extra controller logic to account for duplicated playlist logic. maybe it should go somewere else?

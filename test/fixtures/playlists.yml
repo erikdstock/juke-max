@@ -3,6 +3,7 @@ basic:
   name: The Jams
   link_name: "hangin with misses hopper"
   user: grace
+  spotify_hash: <%= RSpotifyStubHelper::PLAYLIST_SPOTIFY_HASH.to_json %>
 
 nameless:
   name: Nameless Jams
