@@ -27,8 +27,12 @@ class PlaylistsController < ApplicationController
 
   def update
     playlist = Playlist.find_by(id: params[:id])
-    playlist.update(playlist_params)
-    redirect_to playlist
+    if playlist.update(playlist_params)
+      redirect_to playlist
+    else
+      flash[:alert] = playlist.errors.full_messages
+    redirect_to edit_playlist_path(playlist)
+    end
   end
 
   def destroy

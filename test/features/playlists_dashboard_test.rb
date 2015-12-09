@@ -16,7 +16,7 @@ feature "Logging in" do
     visit root_path
     mock_oauth(:grace)
 
-    RSpotify::User.stub :find, RSpotify::User.new(USER_PARAMS[:grace]) do
+    RSpotify::User.stub :find, RSpotify::User.new(PARAMS[:users][:grace]) do
       page.find("#top-nav-login").click
     end
     page.must_have_content("Grace Hopper")

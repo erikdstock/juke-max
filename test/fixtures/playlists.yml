@@ -1,13 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 basic: 
   name: The Jams
-  link_name: "hangin with misses hopper"
+  link_name: "hangin with ms hopper"
   user: grace
+  # spotify_hash: <%#= RSpotifyStubHelper::PLAYLIST_YAML %>
 
 nameless:
   name: Nameless Jams
   user: grace
-  spotify_hash: <%= RSpotifyStubHelper::PLAYLIST_SPOTIFY_HASH.to_json %>
+  # spotify_hash: <%#= RSpotifyStubHelper::PLAYLIST_YAML%>
 
 
 

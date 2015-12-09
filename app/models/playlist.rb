@@ -14,7 +14,7 @@ class Playlist < ActiveRecord::Base
     self.spotify_id = params.id
   end
 
-  def link_name
+  def party_path
     link_name = self[:link_name]
     return nil unless link_name
     link_name.downcase.gsub(/[\s]/,"-")

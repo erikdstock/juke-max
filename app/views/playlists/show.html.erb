@@ -25,6 +25,9 @@
         Deactivate 
         <i class="material-icons">volume_off</i>
       <% end %>
+      <%= link_to "at/#{@playlist.party_path}", class: "waves-effect waves-light btn darken-2" do %> 
+        Party Link: at/<%= @playlist.party_path %>
+      <% end %>
     <% else %>
       <%= link_to activate_playlist_path, class: "waves-effect waves-light btn light-blue darken-2" do %> 
           Activate 
