@@ -1,4 +1,5 @@
 require 'test_helper'
+include RSpotifyStubHelper
 
 class PlaylistTest < ActiveSupport::TestCase
   test "playlist has a name" do
@@ -18,10 +19,9 @@ class PlaylistTest < ActiveSupport::TestCase
   end
 
   test "#spotify_hash returns a hash if valid JSON string is stored in object" do 
-    # RSpotify::Playlist.stub :find, RSpotify::Playlist.new(PLAYLIST_PARAMS) do
       test_list = playlists(:basic)
-      assert_equal test_list.spotify_hash.class, Hash
-    # end
+      test_list.spotify_hash = spotify_hash_for :playlist
+      assert_instance_of Hash, test_list.spotify_hash
   end
 
 

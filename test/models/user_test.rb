@@ -1,4 +1,5 @@
 require 'test_helper'
+include RSpotifyStubHelper
 
 class UserTest < ActiveSupport::TestCase
   # test "the truth" do
@@ -10,7 +11,8 @@ class UserTest < ActiveSupport::TestCase
 
   test "#spotify_hash returns a hash if valid JSON string is stored in object" do 
     test_user = users(:grace)
-    assert_equal test_user.spotify_hash.class, Hash
+    test_user.spotify_hash = spotify_hash_for :grace
+    assert_instance_of Hash, test_user.spotify_hash
   end
 
   # test "#spotify_hash returns nil if there is no link_name" do 

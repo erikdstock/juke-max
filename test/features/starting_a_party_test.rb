@@ -1,6 +1,5 @@
 require 'test_helper'
 require_relative "../support/rspotify_stub_helper"
-
 include RSpotifyStubHelper
 
 feature "Throwing a party" do
@@ -9,12 +8,12 @@ feature "Throwing a party" do
   end
 
   scenario "User creates a new playlist from the dashboard" do
-    name = PLAYLIST_PARAMS['name']
+    name = PARAMS[:playlist]['name']
 
     click_link "New playlist"
     fill_in "Name", with: name
 
-    stub_playlist  do
+    stub_create_playlist  do
       click_on "Submit"
     end
 

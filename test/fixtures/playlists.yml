@@ -3,12 +3,12 @@ basic:
   name: The Jams
   link_name: "hangin with misses hopper"
   user: grace
-  spotify_hash: <%= RSpotifyStubHelper::PLAYLIST_YAML %>
+  # spotify_hash: <%#= RSpotifyStubHelper::PLAYLIST_YAML %>
 
 nameless:
   name: Nameless Jams
   user: grace
-  spotify_hash: <%= RSpotifyStubHelper::PLAYLIST_YAML%>
+  # spotify_hash: <%#= RSpotifyStubHelper::PLAYLIST_YAML%>
 
 
 
