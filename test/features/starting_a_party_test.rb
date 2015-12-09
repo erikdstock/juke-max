@@ -23,7 +23,9 @@ feature "Throwing a party" do
   scenario "navigate to playlist show page from the dashboard and activate" do
     # skip
     click_link "The Jams"
+    save_and_open_page
     click_on "Activate"
+    save_and_open_page
     page.must_have_content("Party Link: at/#{playlists(:basic).party_path}")
   end
 
