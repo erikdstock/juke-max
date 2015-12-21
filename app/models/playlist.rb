@@ -20,6 +20,15 @@ class Playlist < ActiveRecord::Base
     link_name.downcase.gsub(/[\s]/,"-")
   end
 
+  def tracks #needs test
+    self.rspotify.tracks.map do |track|
+      track_object = {}
+      track_object[:name] = track.name
+      track_object[:artist] = track.artists.first.name
+      track_object
+    end
+  end
+
   def spotify_hash
     self[:spotify_hash] ? JSON.parse(self[:spotify_hash]) : nil
   end

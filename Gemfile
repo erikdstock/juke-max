@@ -28,8 +28,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rspotify'
 gem "figaro"
 
-gem "codeclimate-test-reporter", group: :test
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -43,6 +41,8 @@ gem "minitest-rails"
 gem "minitest-reporters"
 
 group :test do
+  gem "webmock"
+  gem "codeclimate-test-reporter"
   gem "minitest-rails-capybara"
   gem "minitest-stub_any_instance"
   gem "launchy"

@@ -1,6 +1,5 @@
 require "test_helper"
 require_relative "../support/rspotify_stub_helper"
-# require_relative "../support/features_helper"
 
 include RSpotifyStubHelper
 

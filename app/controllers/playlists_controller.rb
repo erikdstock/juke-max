@@ -19,6 +19,8 @@ class PlaylistsController < ApplicationController
 
   def show
     @playlist = Playlist.find_by(id: params[:id])
+    # get track list from spotify early- bad form? Could do it directly in view (.tracks)
+    @tracks = @playlist.tracks
   end
 
   def edit

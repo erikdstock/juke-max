@@ -9,24 +9,12 @@ feature "Throwing a party" do
 
   scenario "User creates a new playlist from the dashboard" do
     name = PARAMS[:playlist]['name']
-
     click_link "New playlist"
     fill_in "Name", with: name
-
     stub_create_playlist  do
       click_on "Submit"
     end
-
     page.must_have_content(name)  
-  end
-
-  scenario "navigate to playlist show page from the dashboard and activate" do
-    # skip
-    click_link "The Jams"
-    save_and_open_page
-    click_on "Activate"
-    save_and_open_page
-    page.must_have_content("Party Link: at/#{playlists(:basic).party_path}")
   end
 
   scenario "User tries to activate a playlist with no link_name - they are redirected to #show page" do
@@ -35,5 +23,12 @@ feature "Throwing a party" do
     page.must_have_content("#{playlists(:nameless).name} - Edit")
     page.must_have_content("You need to name your party before you can activate this playlist")
   end
+
+  scenario "navigate to playlist show page from the dashboard and activate" do
+    click_link "The Jams"
+    click_on "Activate"
+    page.must_have_content("Party Link: at/#{playlists(:basic).party_path}")
+  end
+
 
 end

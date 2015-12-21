@@ -2,18 +2,29 @@
   <div class="col s12">
     <div class="card teal lighten-1">
       <div class="card-content white-text">
-        <span class="card-title"><%= @playlist.name %></span>
+        <span class="card-title activator"><%= @playlist.name %></span>
           <% if @playlist.active? %>
             <i class="material-icons">volume_up</i>
           <% else %>
             <i class="material-icons">volume_off</i>
           <% end %>
-        <div class="collection">
-					<!-- Songs here -->
-				</div>
+        <!-- <div class="collection">
+					Songs here
+				</div> -->
       </div>
-      <div class="card-action">
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">Track List<i class="material-icons right">close</i></span>
+        <% if @tracks.length == 0 %>
+          <p>You need to add some songs first!</p>
+        <% else %>
+          <ol>
+            <% @tracks.each do |track| %>
+              <li><%= track[:name] + " - " + track[:artist] %> </li>
+            <% end %>
+          </ol>
+        <% end %>
         <!-- Links to add songs, etc. -->
+        <p>Here is some more information about this product that is only revealed once clicked on.</p>
       </div>
     </div>
     <%= link_to playlists_path, class: "waves-effect waves-light btn light-blue darken-2" do %>
