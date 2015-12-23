@@ -2,9 +2,17 @@ require 'test_helper'
 require_relative "../support/rspotify_stub_helper"
 include RSpotifyStubHelper
 
-feature "Throwing a party" do
+feature "Starting a party" do
   before do
     login_with_oauth(:grace)
+
+    ## RSpotify API Stubs
+    # Stub playlists
+    rspotify_stub_create_playlist
+    rspotify_stub_user
+    rspotify_stub_playlists
+    rspotify_stub_tracks
+    # stub tracks
   end
 
   scenario "User creates a new playlist from the dashboard" do

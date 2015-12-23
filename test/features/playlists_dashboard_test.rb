@@ -1,10 +1,14 @@
-require "test_helper"
+require 'test_helper'
 require_relative "../support/rspotify_stub_helper"
-
 include RSpotifyStubHelper
 
 
 feature "Logging in" do
+
+  before do 
+    rspotify_stub_playlists
+    
+  end
 
   scenario "visiting the home page" do
     visit root_path

@@ -1,9 +1,10 @@
+require_relative "./rspotify_json_examples"
+
 module RSpotifyStubHelper
 
   # Rspotify's Omniauth returns something from this hash
     PARAMS = {
-      :users => {
-        :grace => {
+      :user => {
           :refresh_token => "AQCcIUDrh9CJuKnNgenS1lNlO95nGkNZVQbqHB4QgS7g-jcG8tAwkdn14kjMHMB-h0MMlJ3Y6pQ7RxD6tU8Qc2rtpNfqkpm73ZduDwq0aSjwFktSxoFDkWixyWeHfhmq_ts",
           :token => "BQAVIVJl4DRWezsup9HtB6FSi7oyi1wz_LNLtZq4TTFWU5qvjVDsqUvhJPINkta5bb20f_KHwzr4_lxohvNGN1tAyCliel5-aL1ou9jiaOwr3TZiiwRH1DWst_y_MsgSa2QHKrVohsu0oSR2Giwq0zwLv347mZnQbKy1GsafX1JW6USFawPJ9H0kXPtwEX6TGwZmeL77z7PJdoU",
           :info => {
@@ -22,7 +23,6 @@ module RSpotifyStubHelper
               "spotify"=>"https://open.spotify.com/user/erik"
             }
           }
-        }
       },
       :playlist => {
         "collaborative"=>false,
@@ -65,27 +65,67 @@ module RSpotifyStubHelper
         "type"=>"playlist",
         "uri"=>"spotify:user:discgrace:playlist:2Vsiq5g9YRAX9lK6P1ejOE",
         "path"=>"users/discgrace/playlists/2Vsiq5g9YRAX9lK6P1ejOE"
-      }
+      },
+      :tracks => [{
+        artist: "Michael Jordan",
+        name: "Space Jam"
+        },{
+        artist: "Michael Jackson",
+        name: "Scream"
+        },{
+        artist: "Will Smith",
+        name: "Men in Black"
+      }]
     }
 
-  def spotify_hash_for(whom)
-    return PARAMS[whom].to_json if whom == :playlist
-    PARAMS[:users].fetch(whom).to_json
+  def spotify_json_for(whom)
+    return PARAMS[whom].to_json
   end
-  # PLAYLIST_SPOTIFY_HASH = PLAYLIST_PARAMS.to_json
-  # USER_SPOTIFY_HASH = USER_PARAMS.to_json
-
-  # PLAYLIST_YAML = PLAYLIST_SPOTIFY_HASH.instance_variables.inject({}) { |hash,var| hash[var.to_s.delete("@")] = PLAYLIST_PARAMS.instance_variable_get(var); hash }.to_yaml
-  # USER_YAML = PLAYLIST_SPOTIFY_HASH.instance_variables.inject({}) { |hash,var| hash[var.to_s.delete("@")] = USER_PARAMS.instance_variable_get(var); hash }.to_yaml
-
+  
   # we need to mock both oauth and rspotify#find for login
   def login_with_oauth(user = :grace)
     mock_oauth(user)
 
-    RSpotify::User.stub :find, RSpotify::User.new(PARAMS[:users][user]) do
+    RSpotify::User.stub :find, RSpotify::User.new(PARAMS[:user]) do
       visit "/auth/spotify"
     end
   end
+
+  def rspotify_stub_user
+    stub_request(:get, /api.spotify.com\/v1\/users\/[\w\d]+/).
+          with(:headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'User-Agent'=>'Ruby'}).
+          to_return(:status => 200, :body => ApiResponses::USER.to_json, :headers => {})
+  end
+
+  def rspotify_stub_playlists
+    stub_request(:get, /api.spotify.com\/v1\/users\/[\w\d]+\/playlists/).
+          with(:headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'User-Agent'=>'Ruby'}).
+          to_return(:status => 200, :body => [ApiResponses::PLAYLIST].to_json, :headers => {})
+          
+    stub_request(:get, /api.spotify.com\/v1\/users\/[\w\d]+\/playlists\/[\w\d]+/).
+          with(:headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'User-Agent'=>'Ruby'}).
+          to_return(:status => 200, :body => ApiResponses::PLAYLIST.to_json, :headers => {})
+  end
+
+  def rspotify_stub_create_playlist
+    # binding.pry
+    stub_request(:post, "https://api.spotify.com/v1/users/discgrace/playlists/").
+      with(:headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'User-Agent'=>'Ruby'}).
+      to_return(:status => 200, :body => ApiResponses::CREATE_PLAYLIST.to_json, :headers => {})
+  end
+
+  def rspotify_stub_playlist(playlist: :space_jams)
+    stub_request(:get, /api.spotify.com\/v1\/users\/[\w\d]+\/playlists\/[\w\d]+/).
+          with(:headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'User-Agent'=>'Ruby'}).
+          to_return(:status => 200, :body => ApiResponses::PLAYLIST.to_json, :headers => {})
+  end
+
+  def rspotify_stub_tracks
+    stub_request(:get, /api.spotify.com\/v1\/users\/[\w\d]+\/playlists\/[\w\d]+/).
+          with(:headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'User-Agent'=>'Ruby'}).
+          to_return(:status => 200, :body => ApiResponses::TRACKS.to_json, :headers => {})
+  end
+
 
   def stub_create_playlist
     RSpotify::User.stub_any_instance :create_playlist!, RSpotify::Playlist.new(PARAMS[:playlist]) do
@@ -97,12 +137,12 @@ module RSpotifyStubHelper
 
 
   def mock_oauth(user)
-    OmniAuth.config.add_mock :spotify, RSpotifyStubHelper::PARAMS[:users][user]
+    OmniAuth.config.add_mock :spotify, RSpotifyStubHelper::PARAMS[:user]
   end
 
-  def user_stub(user)
-    RSpotify::User.new(PARAMS[:user][user])
-  end
+  # def user_stub(user)
+  #   RSpotify::User.new(PARAMS[:user][user])
+  # end
 
 
 end

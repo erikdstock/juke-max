@@ -3,7 +3,7 @@ class Playlist < ActiveRecord::Base
   
   validates :name, presence: true
   validates :link_name, uniqueness: true,
-                        format: /\A[\w\d\s]{0,24}\z/,
+                        format: /\A[\w\d\s]{4,24}\z/,
                         allow_nil: true
   
   before_create :spotify_create
@@ -51,7 +51,7 @@ class Playlist < ActiveRecord::Base
   end
 
   def rspotify
-    @_rspotify_playlist ||= RSpotify::Playlist.find(user.spotify_id, self.spotify_id)
+    @_rspotify_playlist ||= RSpotify::Playlist.find(self.user.spotify_id, self.spotify_id)
   end
 
 
